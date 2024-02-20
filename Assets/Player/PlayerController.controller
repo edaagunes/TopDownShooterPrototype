@@ -157,9 +157,9 @@ AnimatorState:
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
-  - {fileID: -3910960473167698506}
-  - {fileID: 3513886200835117439}
   - {fileID: -4910891039091727366}
+  - {fileID: 3513886200835117439}
+  - {fileID: -3910960473167698506}
   m_StateMachineBehaviours: []
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
@@ -476,9 +476,9 @@ AnimatorState:
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
-  - {fileID: 7353014967304528338}
   - {fileID: 6849588700403617470}
   - {fileID: 5014199645104774401}
+  - {fileID: 7353014967304528338}
   m_StateMachineBehaviours: []
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0

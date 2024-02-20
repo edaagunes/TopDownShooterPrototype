@@ -517,7 +517,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1567457322}
-  - component: {fileID: 1567457319}
   - component: {fileID: 1567457318}
   - component: {fileID: 1567457317}
   - component: {fileID: 1567457323}
@@ -540,13 +539,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f065e1ed57d2dc84bbb50c450b039164, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 3
+  currentMoveSpeed: 7
+  walkSpeed: 3
+  walkBackSpeed: 2
+  runSpeed: 7
+  runBackSpeed: 5
+  crouchSpeed: 2
+  crouchBackSpeed: 1
   dir: {x: 0, y: 0, z: 0}
+  hzInput: 0
+  vInput: 0
   groundYOffset: 0.6
   groundMask:
     serializedVersion: 2
     m_Bits: 64
   gravity: -9.81
+  anim: {fileID: 0}
 --- !u!143 &1567457318
 CharacterController:
   m_ObjectHideFlags: 0
@@ -558,26 +566,12 @@ CharacterController:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Height: 2
-  m_Radius: 0.5
+  m_Height: 1.8
+  m_Radius: 0.25
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.0001
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!136 &1567457319
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1567457316}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.25
-  m_Height: 1.8
-  m_Direction: 1
   m_Center: {x: 0, y: 0.9, z: 0}
 --- !u!4 &1567457322
 Transform:
@@ -608,42 +602,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3de0da1caf6217b4f8e768824bd2da6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  xAxis:
-    Value: 0
-    m_SpeedMode: 0
-    m_MaxSpeed: 300
-    m_AccelTime: 0
-    m_DecelTime: 0
-    m_InputAxisName: Mouse X
-    m_InputAxisValue: 0
-    m_InvertInput: 0
-    m_MinValue: -180
-    m_MaxValue: 180
-    m_Wrap: 1
-    m_Recentering:
-      m_enabled: 0
-      m_WaitTime: 0
-      m_RecenteringTime: 0
-      m_LegacyHeadingDefinition: 0
-      m_LegacyVelocityFilterStrength: 0
-  yAxis:
-    Value: 0
-    m_SpeedMode: 0
-    m_MaxSpeed: 300
-    m_AccelTime: 0
-    m_DecelTime: 0
-    m_InputAxisName: Mouse Y
-    m_InputAxisValue: 0
-    m_InvertInput: 1
-    m_MinValue: -60
-    m_MaxValue: 60
-    m_Wrap: 0
-    m_Recentering:
-      m_enabled: 0
-      m_WaitTime: 0
-      m_RecenteringTime: 0
-      m_LegacyHeadingDefinition: 0
-      m_LegacyVelocityFilterStrength: 0
+  mouseSense: 1
   camFollowPos: {fileID: 828466409}
 --- !u!1001 &1787402380
 PrefabInstance:
