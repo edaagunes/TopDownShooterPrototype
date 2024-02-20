@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
-
+using UnityEngine.AI;
 public class EnemyAI : MonoBehaviour
 {    
     public UnityEngine.AI.NavMeshAgent agent;
@@ -34,10 +34,14 @@ public class EnemyAI : MonoBehaviour
     private void Awake()
     {
         player = GameObject.FindWithTag("Player").transform;
-        agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
+        agent = GetComponent<NavMeshAgent>();
     }
 
-   
+    private void Start()
+    {
+        SearchWalkPoint();
+    }
+
     private void Update()
     {
         //Check for sight and attack range
@@ -45,22 +49,24 @@ public class EnemyAI : MonoBehaviour
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
 
         if (!playerInSightRange && !playerInAttackRange) Patroling();
-        if (playerInSightRange && !playerInAttackRange) ChasePlayer();
-        if (playerInAttackRange && playerInSightRange) AttackPlayer();
+        else if (playerInSightRange && !playerInAttackRange) ChasePlayer();
+        else if (playerInAttackRange && playerInSightRange) AttackPlayer();
     }
 
     private void Patroling()
     {
         if (!walkPointSet) SearchWalkPoint();
 
-        if (walkPointSet)
-            agent.SetDestination(walkPoint);
+        else if (walkPointSet) agent.SetDestination(walkPoint);
 
         Vector3 distanceToWalkPoint = transform.position - walkPoint;
 
         //Walkpoint reached
         if (distanceToWalkPoint.magnitude < 1f)
+        {
             walkPointSet = false;
+            SearchWalkPoint();
+        }
     }
     private void SearchWalkPoint()
     {
@@ -70,8 +76,15 @@ public class EnemyAI : MonoBehaviour
 
         walkPoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
 
-        if (Physics.Raycast(walkPoint, -transform.up, 2f, whatIsGround))
-            walkPointSet = true;
+        // if (Physics.Raycast(walkPoint, -transform.up, 2f, whatIsGround))
+        //     walkPointSet = true;
+        
+        NavMeshHit hit;
+        if (NavMesh.SamplePosition(walkPoint, out hit, 1.0f, NavMesh.AllAreas))
+        {
+            walkPoint = hit.position; // Yürüme noktasını zemine sabitle
+            walkPointSet = true; // Yürüme noktası belirlendiğini işaretle
+        }
     }
 
     private void ChasePlayer()
