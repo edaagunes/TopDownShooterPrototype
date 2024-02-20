@@ -28,7 +28,7 @@ public class MovementStateManager : MonoBehaviour
 
     #region Gravity
 
-    [SerializeField] private float gravity = -9.81f;
+    [SerializeField]  float gravity = -9.81f;
     private Vector3 velocity;
 
     #endregion
@@ -48,7 +48,7 @@ public class MovementStateManager : MonoBehaviour
         anim = GetComponentInChildren<Animator>();
         controller = GetComponent<CharacterController>();
         SwitchState(Idle);
-
+        
     }
 
     // Update is called once per frame
@@ -83,13 +83,16 @@ public class MovementStateManager : MonoBehaviour
     {
         spherePos = new Vector3(transform.position.x, transform.position.y - groundYOffset, transform.position.z);
         if (Physics.CheckSphere(spherePos, controller.radius - 0.05f, groundMask)) return true;
+        
         return false;
     }
 
     void Gravity()
     {
+
         if (!IsGrounded()) velocity.y += gravity * Time.deltaTime;
-        else if (velocity.y < 0) velocity.y = -2;
+        else if (velocity.y < 0)  velocity.y = -2;
+        
         controller.Move(velocity * Time.deltaTime);
     }
 
