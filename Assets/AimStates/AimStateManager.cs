@@ -22,7 +22,8 @@ public class AimStateManager : MonoBehaviour
     [HideInInspector] public float currentFov;
     public float fovSmoothSpeed = 10;
 
-    [SerializeField]  Transform aimPos;
+    public Transform aimPos;
+    [HideInInspector] public Vector3 actualAimPos;
     [SerializeField]  float aimSmoothSpeed = 20;
     [SerializeField]  LayerMask aimMask;
      void Start()
@@ -31,7 +32,8 @@ public class AimStateManager : MonoBehaviour
          hipFov = vCam.m_Lens.FieldOfView;
          anim = GetComponent<Animator>();
         SwitchState(Hip);
-    }
+
+     }
 
     void Update()
     {
