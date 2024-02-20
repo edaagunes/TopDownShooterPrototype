@@ -15,9 +15,9 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.GetComponentInParent<EnemyHealth>())
+        if (collision.gameObject.GetComponentInParent<EnemyAI>())
         {
-            EnemyHealth enemyHealth = collision.gameObject.GetComponentInParent<EnemyHealth>();
+            EnemyAI enemyHealth = collision.gameObject.GetComponentInParent<EnemyAI>();
             enemyHealth.TakeDamage(weapon.damage);
         }
         Destroy(this.gameObject);
