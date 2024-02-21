@@ -17,6 +17,7 @@ public class EnemyAI : MonoBehaviour
     public GameObject newProjectile;
 
     [SerializeField]  HealthBarManager healthBar;
+    [SerializeField] KillCounter killCounter;
     
     //Patroling
     public Vector3 walkPoint;
@@ -44,6 +45,7 @@ public class EnemyAI : MonoBehaviour
     {
         SearchWalkPoint();
         healthBar.UpdateEnemyHealthBar(health,maxHealth);
+        killCounter = GameObject.Find("KCO").GetComponent<KillCounter>();
     }
 
     private void Update()
@@ -135,6 +137,7 @@ public class EnemyAI : MonoBehaviour
     private void DestroyEnemy()
     {
         Destroy(gameObject);
+        killCounter.AddKill();
     }
 
     private void OnDrawGizmosSelected()
