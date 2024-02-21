@@ -6,10 +6,10 @@ public class HealthBarManager : MonoBehaviour
 {
     [SerializeField] private Slider enemySlider;
     
-    
-    public void UpdateHealthBar(float currentValue, float maxValue)
+    public void UpdateEnemyHealthBar(float currentValue, float maxValue)
     {
         enemySlider.value = currentValue / maxValue;
     }
+  
     
 }

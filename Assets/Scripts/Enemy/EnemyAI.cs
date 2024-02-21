@@ -17,7 +17,7 @@ public class EnemyAI : MonoBehaviour
     public GameObject newProjectile;
 
     [SerializeField]  HealthBarManager healthBar;
-
+    
     //Patroling
     public Vector3 walkPoint;
     bool walkPointSet;
@@ -43,7 +43,7 @@ public class EnemyAI : MonoBehaviour
     private void Start()
     {
         SearchWalkPoint();
-        healthBar.UpdateHealthBar(health,maxHealth);
+        healthBar.UpdateEnemyHealthBar(health,maxHealth);
     }
 
     private void Update()
@@ -130,7 +130,7 @@ public class EnemyAI : MonoBehaviour
         if (health <= 0) Invoke(nameof(DestroyEnemy), 0.5f);
 
         
-        healthBar.UpdateHealthBar(health,maxHealth);
+        healthBar.UpdateEnemyHealthBar(health,maxHealth);
     }
     private void DestroyEnemy()
     {
@@ -144,6 +144,9 @@ public class EnemyAI : MonoBehaviour
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, sightRange);
     }
+
+   
+
 }
 
 
