@@ -1,4 +1,4 @@
-# Welfish Studio Case Study
+# Case Study
 - Built-in Unity Version 2021.3.16f1
 
 ***CineMachine, NavMesh Agents, Blend Tree, State Machine***
